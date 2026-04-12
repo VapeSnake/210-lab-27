@@ -15,7 +15,7 @@ int main()
     villagers["Chip"] = make_tuple(1, "Beaver", "This island is small!");
     villagers["Augie"] = make_tuple(2, "Armadillo", "I left my sunscreen at home.");
     villagers.insert({"Bubbles", make_tuple(3, "Capybara", "Do jellyfish have bones?")});
-
+// Menu for increasing/decreasing friendship levels, displaying villagers, and exiting the program.
     do {
         int choice;
         cout << "1. Increase Friendship" << endl;
@@ -25,7 +25,22 @@ int main()
         cout << "Enter your choice: ";
         cin >> choice;
 
-        if ()
+        if (choice == 1 || choice == 2) {
+            string name;
+            cout << "Enter the name of the villager: ";
+            cin >> name;
+
+            auto it = villagers.find(name);
+            if (it != villagers.end()) {
+                if (choice == 1) {
+                    get<0>(it->second)++; // Increase friendship level
+                    cout << "Increased " << name << "'s friendship level to " << get<0>(it->second) << "." << endl;
+                } else {
+                    get<0>(it->second)--; // Decrease friendship level
+                    cout << "Decreased " << name << "'s friendship level to " << get<0>(it->second) << "." << endl;
+                }
+            }
+        })
     } while (choice != 4);
 /*
     // access the map using a range-based for loop
