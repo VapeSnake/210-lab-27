@@ -15,13 +15,20 @@ int main()
     villagers["Chip"] = make_tuple(1, "Beaver", "This island is small!");
     villagers["Augie"] = make_tuple(2, "Armadillo", "I left my sunscreen at home.");
     villagers.insert({"Bubbles", make_tuple(3, "Capybara", "Do jellyfish have bones?")});
+
+    // Initial display of villagers and their friendship levels, species, and catch phrases.
+    for (const auto &pair : villagers)
+    {
+        cout << pair.first << ": " << get<0>(pair.second) << ", " // to access tuple elements, we use get<index>.
+             << get<1>(pair.second) << ", " << get<2>(pair.second) << endl;
+    }
     // Menu for increasing/decreasing friendship levels, displaying villagers, and exiting the program.
+    int choice;
     do
     {
-        int choice;
         cout << "1. Increase Friendship" << endl;
         cout << "2. Decrease Friendship" << endl;
-        cout << "Display Villagers" << endl;
+        cout << "3. Display Villagers" << endl;
         cout << "4. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
@@ -36,10 +43,18 @@ int main()
             if (it != villagers.end())
             {
                 if (choice == 1)
-                { // Increase friendship level
-                    get<0>(it->second)++;
-                    cout << "Increased " << name << "'s friendship level to " << get<0>(it->second) << ".\n"
-                         << endl;
+                { // Increase friendship level. Maxes out at 10.
+                    if (get<0>(it->second) < 10)
+                    {
+                        get<0>(it->second)++;
+                        cout << "Increased " << name << "'s friendship level to " << get<0>(it->second) << ".\n"
+                             << endl;
+                    }
+                    else
+                    {
+                        cout << name << "'s friendship level is already at the maximum of 10.\n"
+                             << endl;
+                    }
                     for (const auto &pair : villagers)
                     {
                         cout << pair.first << ": " << get<0>(pair.second) << ", " // to access tuple elements, we use get<index>.
@@ -47,10 +62,18 @@ int main()
                     }
                 }
                 else
-                {
-                    get<0>(it->second)--; // Decrease friendship level
-                    cout << "Decreased " << name << "'s friendship level to " << get<0>(it->second) << ".\n"
-                         << endl;
+                { // Decrease friendship level. Mins out at 0.
+                    if (get<0>(it->second) > 0)
+                    {
+                        get<0>(it->second)--;
+                        cout << "Decreased " << name << "'s friendship level to " << get<0>(it->second) << ".\n"
+                             << endl;
+                    }
+                    else
+                    {
+                        cout << name << "'s friendship level is already at the minimum of 0.\n"
+                             << endl;
+                    }
                     for (const auto &pair : villagers)
                     {
                         cout << pair.first << ": " << get<0>(pair.second) << ", " // to access tuple elements, we use get<index>.
@@ -77,50 +100,49 @@ int main()
                 }
             }
         }
-        while (choice != 4 || choice < 1 || choice > 4)
-    }
-             // Loop until the user chooses to exit or enters an invalid choice.
-              /*
-                  // access the map using a range-based for loop
-                  cout << "Villagers and their friendship levels, species, and catch phrases:" << endl;
-                  for (const auto &pair : villagers)
-                  {                                                             // pair is the string (name) and details (tuple).
-                      cout << pair.first << ": " << get<0>(pair.second) << ", " // to access tuple elements, we use get<index>.
-                           << get<1>(pair.second) << ", " << get<2>(pair.second) << endl;
-                  }
-      
-                  // access the map using iterators
-                  cout << "\nVillagers and their details (iterators):" << endl;
-                  for (map<string, tuple<int, string, string>>::iterator it = villagers.begin();
-                       it != villagers.end(); ++it)
-                  {
-                      cout << it->first << ": " << get<0>(it->second) << ", " << get<1>(it->second) << ", " << get<2>(it->second) << endl;
-                  }
-                  cout << endl;
-      
-                  // delete an element
-                  villagers.erase("Augie");
-      
-                  // search for an element using .find() to avoid errors
-                  string searchKey = "Bubbles";
-                  auto it = villagers.find(searchKey);
-                  if (it != villagers.end())
-                  { // the iterator points to beyond the end of the map
-                    // if searchKey is not found
-                      cout << "\nFound " << searchKey << "'s info: ";
-                      cout << "\nFriendship Level: " << get<0>(it->second) << endl;
-                      cout << "Species: " << get<1>(it->second) << endl;
-                      cout << "Catch Phrase: " << get<2>(it->second) << endl;
-                  }
-                  else
-                      cout << endl
-                           << searchKey << " not found." << endl;
-      
-                  // report size, clear, report size again to confirm map operations
-                  cout << "\nSize before clear: " << villagers.size() << endl;
-                  villagers.clear();
-                  cout << "Size after clear: " << villagers.size() << endl;
-              */
-        return 0;
-    
+    } while (choice != 4 || choice < 1 || choice > 4);
+
+    // Loop until the user chooses to exit or enters an invalid choice.
+    /*
+        // access the map using a range-based for loop
+        cout << "Villagers and their friendship levels, species, and catch phrases:" << endl;
+        for (const auto &pair : villagers)
+        {                                                             // pair is the string (name) and details (tuple).
+            cout << pair.first << ": " << get<0>(pair.second) << ", " // to access tuple elements, we use get<index>.
+                 << get<1>(pair.second) << ", " << get<2>(pair.second) << endl;
+        }
+
+        // access the map using iterators
+        cout << "\nVillagers and their details (iterators):" << endl;
+        for (map<string, tuple<int, string, string>>::iterator it = villagers.begin();
+             it != villagers.end(); ++it)
+        {
+            cout << it->first << ": " << get<0>(it->second) << ", " << get<1>(it->second) << ", " << get<2>(it->second) << endl;
+        }
+        cout << endl;
+
+        // delete an element
+        villagers.erase("Augie");
+
+        // search for an element using .find() to avoid errors
+        string searchKey = "Bubbles";
+        auto it = villagers.find(searchKey);
+        if (it != villagers.end())
+        { // the iterator points to beyond the end of the map
+          // if searchKey is not found
+            cout << "\nFound " << searchKey << "'s info: ";
+            cout << "\nFriendship Level: " << get<0>(it->second) << endl;
+            cout << "Species: " << get<1>(it->second) << endl;
+            cout << "Catch Phrase: " << get<2>(it->second) << endl;
+        }
+        else
+            cout << endl
+                 << searchKey << " not found." << endl;
+
+        // report size, clear, report size again to confirm map operations
+        cout << "\nSize before clear: " << villagers.size() << endl;
+        villagers.clear();
+        cout << "Size after clear: " << villagers.size() << endl;
+    */
+    return 0;
 }
