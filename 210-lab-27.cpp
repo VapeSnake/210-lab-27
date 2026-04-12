@@ -32,30 +32,29 @@ int main()
         cout << it->first << ": " << get<0>(it->second) << ", " << get<1>(it->second) << ", " << get<2>(it->second) << endl;
     }
     cout << endl;
-}
 
-// delete an element
-villagerColors.erase("Raymond");
+    // delete an element
+    villagers.erase("Augie");
 
-// search for an element using .find() to avoid errors
-string searchKey = "Audie";
-auto it = villagerColors.find(searchKey);
-if (it != villagerColors.end())
-{ // the iterator points to beyond the end of the map
-  // if searchKey is not found
-    cout << "\nFound " << searchKey << "'s favorite colors: ";
-    for (auto color : it->second) // range loop to traverse the value/vector
-        cout << color << " ";
-    cout << endl;
-}
-else
-    cout << endl
-         << searchKey << " not found." << endl;
+    // search for an element using .find() to avoid errors
+    string searchKey = "Bubbles";
+    auto it = villagers.find(searchKey);
+    if (it != villagers.end())
+    { // the iterator points to beyond the end of the map
+      // if searchKey is not found
+        cout << "\nFound " << searchKey << "'s info: ";
+        cout << "\nFriendship Level: " << get<0>(it->second) << endl;
+        cout << "Species: " << get<1>(it->second) << endl;
+        cout << "Catch Phrase: " << get<2>(it->second) << endl;
+    }
+    else
+        cout << endl
+             << searchKey << " not found." << endl;
 
-// report size, clear, report size again to confirm map operations
-cout << "\nSize before clear: " << villagerColors.size() << endl;
-villagerColors.clear();
-cout << "Size after clear: " << villagerColors.size() << endl;
+    // report size, clear, report size again to confirm map operations
+    cout << "\nSize before clear: " << villagers.size() << endl;
+    villagers.clear();
+    cout << "Size after clear: " << villagers.size() << endl;
 
-return 0;
+    return 0;
 }
