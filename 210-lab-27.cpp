@@ -1,6 +1,5 @@
 // COMSC-210 | Lab 27 | Noel Mier-Luna
 #include <iostream>
-#include <string>
 #include <map>
 #include <algorithm>
 #include <vector>
@@ -12,15 +11,14 @@ int main() {
 
     // insert elements into the map
     // note how the right-hand side of the assignment are the tuple elements.
-    villagers["Chip"] = make_tuple(1, "Beaver", "This island is small!")
+    villagers["Chip"] = make_tuple(1, "Beaver", "This island is small!");
+    villagers["Augie"] = make_tuple(2, "Armadillo", "I left my sunscreen at home.");
+    villagers.insert({"Bubbles", make_tuple(3, "Capybara", "Do jellyfish have bones?")});
 
     // access the map using a range-based for loop
-    cout << "Villagers and their favorite colors (range-based for loop):" << endl;
-    for (auto pair : villagerColors) {
-        cout << pair.first << ": ";
-        for (auto color : pair.second)
-            cout << color << " ";
-        cout << endl;
+    cout << "Villagers and their friend levels, species, and catch phrases (range-based for loop):" << endl;
+    
+ 
     }
 
     // access the map using iterators
