@@ -16,6 +16,18 @@ int main()
     villagers["Augie"] = make_tuple(2, "Armadillo", "I left my sunscreen at home.");
     villagers.insert({"Bubbles", make_tuple(3, "Capybara", "Do jellyfish have bones?")});
 
+    do {
+        int choice;
+        cout << "1. Increase Friendship" << endl;
+        cout << "2. Decrease Friendship" << endl;
+        cout << "Display Villagers" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        if ()
+    } while (choice != 4);
+/*
     // access the map using a range-based for loop
     cout << "Villagers and their friendship levels, species, and catch phrases:" << endl;
     for (const auto &pair : villagers)
@@ -55,6 +67,6 @@ int main()
     cout << "\nSize before clear: " << villagers.size() << endl;
     villagers.clear();
     cout << "Size after clear: " << villagers.size() << endl;
-
+*/
     return 0;
 }
