@@ -26,14 +26,18 @@ int main()
     int choice;
     do
     {
-        cout << "\n1. Increase Friendship" << endl;
-        cout << "2. Decrease Friendship" << endl;
-        cout << "3. Display Villagers" << endl;
-        cout << "4. Exit" << endl;
+        cout << "\n1. Add Villager" << endl;
+        cout << "2. Delete Villager" << endl;
+        cout << "3. Increase Friendship" << endl; 
+        cout << "4. Decrease Friendship" << endl;
+        cout << "5. Search for Villager" << endl;
+        cout << "6. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
-        if (choice == 1 || choice == 2)
+        if 
+
+        if (choice == 3 || choice == 4 || choice == 5)
         {
             string name;
             cout << "Enter the name of the villager: ";
@@ -42,7 +46,7 @@ int main()
             auto it = villagers.find(name);
             if (it != villagers.end())
             {
-                if (choice == 1)
+                if (choice == 3)
                 { // Increase friendship level. Maxes out at 10.
                     if (get<0>(it->second) < 10)
                     {
@@ -61,7 +65,7 @@ int main()
                              << get<1>(pair.second) << ", " << get<2>(pair.second) << endl;
                     }
                 }
-                else
+                else if (choice == 4)
                 { // Decrease friendship level. Mins out at 0.
                     if (get<0>(it->second) > 0)
                     {
@@ -90,17 +94,13 @@ int main()
                          << get<1>(pair.second) << ", " << get<2>(pair.second) << endl;
                 }
             }
-            if (choice == 3)
-            {
-                cout << "Villagers and their friendship levels, species, and catch phrases:" << endl;
-                for (const auto &pair : villagers)
-                {                                                             // pair is the string (name) and details (tuple).
-                    cout << pair.first << ": " << get<0>(pair.second) << ", " // to access tuple elements, we use get<index>.
-                         << get<1>(pair.second) << ", " << get<2>(pair.second) << endl;
-                }
-            }
+            // If the user chooses to search for a villager, display their information if found.
+            cout << name << "'s info: ";
+            cout << "\nFriendship Level: " << get<0>(it->second) << endl;
+            cout << "Species: " << get<1>(it->second) << endl;
+            cout << "Catch Phrase: " << get<2>(it->second) << endl;
         }
-    } while (choice != 4 || choice < 1 || choice > 4);
+    } while (choice != 6 || choice < 1 || choice > 6);
 
     // Loop until the user chooses to exit or enters an invalid choice.
     /*
