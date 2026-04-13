@@ -14,19 +14,19 @@ int main()
     // note how the right-hand side of the assignment are the tuple elements.
     villagers["Chip"] = make_tuple(1, "Beaver", "This island is small!");
     villagers["Augie"] = make_tuple(2, "Armadillo", "I left my sunscreen at home.");
-    villagers.insert({"Bubbles", make_tuple(3, "Capybara", "Do jellyfish have bones?")});
+    villagers.insert({"Bubbles", make_tuple(9, "Capybara", "Do jellyfish have bones?")});
 
     // Initial display of villagers and their friendship levels, species, and catch phrases.
     for (const auto &pair : villagers)
     {
         cout << pair.first << ": " << get<0>(pair.second) << ", " // to access tuple elements, we use get<index>.
-             << get<1>(pair.second) << ", " << get<2>(pair.second) << endl;
+             << get<1>(pair.second) << ", " << get<2>(pair.second) << endl;;
     }
     // Menu for increasing/decreasing friendship levels, displaying villagers, and exiting the program.
     int choice;
     do
     {
-        cout << "1. Increase Friendship" << endl;
+        cout << "\n1. Increase Friendship" << endl;
         cout << "2. Decrease Friendship" << endl;
         cout << "3. Display Villagers" << endl;
         cout << "4. Exit" << endl;
